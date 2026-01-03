@@ -58,7 +58,7 @@ def evaluate_response_quality(question: str, answer: str, contexts: List[str]) -
     metrics = [
         Faithfulness(llm=evaluator_llm),
         ResponseRelevancy(llm=evaluator_llm),
-        NonLLMContextPrecisionWithReference(embeddings=evaluator_embeddings),
+        NonLLMContextPrecisionWithReference(),
         RougeScore(),
         BleuScore()
     ]
@@ -71,7 +71,8 @@ def evaluate_response_quality(question: str, answer: str, contexts: List[str]) -
 
     results = evaluate(
         samples=[sample],
-        metrics=metrics
+        metrics=metrics,
+        embeddings=evaluator_embeddings 
     )
 
     # TODO: Return the evaluation results
