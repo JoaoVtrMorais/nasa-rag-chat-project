@@ -3,7 +3,7 @@ from ragas.llms import LangchainLLMWrapper
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAIEmbeddings
-from typing import Dict, List, Optional
+from typing import Dict, List
 from dotenv import load_dotenv
 
 # RAGAS imports
