@@ -37,7 +37,7 @@ def discover_chroma_backends() -> Dict[str, Dict[str, str]]:
                     # Store directory path as string
                     "directory": str(chroma_dir),
                     # Store collection name
-                    "collection": collection.name,
+                    "collection_name": collection.name,
                     # Create user-friendly display name
                     "display_name": f"{chroma_dir.name} - {collection.name}",
                     # Get document count with fallback for unsupported operations
@@ -65,14 +65,17 @@ def discover_chroma_backends() -> Dict[str, Dict[str, str]]:
 
 def initialize_rag_system(chroma_dir: str, collection_name: str):
     """Initialize the RAG system with specified backend (cached for performance)"""
-    # Create a chomadb persistentclient
-    client = chromadb.PersistentClient(
-        path=chroma_dir,
-        settings=Settings(anonymized_telemetry=False)
-    )
-    # Return the collection with the collection_name
-    collection = client.get_or_create_collection(name=collection_name)
-    return collection
+    try:
+        # Create a chomadb persistentclient
+        client = chromadb.PersistentClient(
+            path=chroma_dir,
+            settings=Settings(anonymized_telemetry=False)
+        )
+        # Return the collection with the collection_name
+        collection = client.get_or_create_collection(name=collection_name)
+        return collection, True, None
+    except Exception as e:
+        return None, False, str(e)
 
 def retrieve_documents(collection, query: str, n_results: int = 3, 
                       mission_filter: Optional[str] = None) -> Optional[Dict]:
@@ -90,11 +93,11 @@ def retrieve_documents(collection, query: str, n_results: int = 3,
     # Execute database query with the following parameters:
     results = collection.query(
         # Pass search query in the required format
-        query=query,
+        query_texts=query,
         # Set maximum number of results to return
         n_results=n_results,
         # Apply conditional filter (None for no filtering, dictionary for specific filtering)
-        filter=filter
+        where=filter
     )
 
     # Return query results to caller
