@@ -1,0 +1,18 @@
+# Apollo 13 Mission Evaluation Dataset - 8 questions
+# Format: question | reference_answer
+
+What were the call signs used for the Command Module and Lunar Module when both vehicles were manned?|When both vehicles are manned, the call sign will be Odyssey for the CSM and Aquarius for the LM.
+
+Who were the three crew members of Apollo 13 and their roles?|Commander (CDR): James A. (Jim) Lovell, Jr.; Command Module Pilot (CMP): John L. Swigert, Jr.; Lunar Module Pilot (LMP): Fred W. Haise, Jr.
+
+At what Ground Elapsed Time (GET) did the crew report S-II ignition?|At 000:02:48 GET, the CDR reported "S-II ignition."
+
+What was the predicted S-IVB cutoff time communicated by Houston around 11 minutes GET?|Houston communicated a predicted S-IVB cutoff time of 12 plus 34 (GET 00:12:34).
+
+Why did the O2 FLOW HIGH light come on around 2 hours and 12 minutes GET, and what did Houston say?|The O2 FLOW HIGH light came on at approximately 2 hours and 12 minutes GET and remained pegged high. Houston stated it was nominal with the WASTE TANK VENT open and that it was "no sweat."
+
+At what approximate GET did LM jettison occur during the return?|LM jettison occurred at approximately 141:30 GET (crew called "LM jettison" at 141:29:56, confirmed by Houston at 141:30:05).
+
+What was the prime recovery ship and landing area for Apollo 13?|The prime recovery ship was the USS Iwo Jima in the Mid-Pacific landing area.
+
+What was the final GET of moonset and the Moon-check attitude provided in the entry pad?|GET of moonset and Moon-check attitude: 142:38:19, 178 degrees.
