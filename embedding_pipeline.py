@@ -639,9 +639,12 @@ class ChromaEmbeddingPipelineTextOnly:
             Query results
         """
         # Perform test query and return results
+
+        query_embedding = self.get_embedding(query_text)
+
         results = self.collection.query(
-            query_texts=[query_text],
-            n_results=n_results
+            query_embeddings=[query_embedding],
+            n_results=n_results,
         )
 
         return results
