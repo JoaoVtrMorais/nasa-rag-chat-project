@@ -1,7 +1,14 @@
+import os
 import chromadb
 from chromadb.config import Settings
+from chromadb.utils import embedding_functions
+from dotenv import load_dotenv
 from typing import Dict, List, Optional
 from pathlib import Path
+
+
+load_dotenv()
+
 
 def discover_chroma_backends() -> Dict[str, Dict[str, str]]:
     """Discover available ChromaDB backends in the project directory"""
@@ -71,8 +78,27 @@ def initialize_rag_system(chroma_dir: str, collection_name: str):
             path=chroma_dir,
             settings=Settings(anonymized_telemetry=False)
         )
+
         # Return the collection with the collection_name
-        collection = client.get_or_create_collection(name=collection_name)
+        openai_key = os.getenv("OPEN_AI_KEY")
+
+        if openai_key.startswith("voc"):
+            embedding_function = embedding_functions.OpenAIEmbeddingFunction(
+                model_name="text-embedding-3-small",
+                api_base="https://openai.vocareum.com/v1",
+                api_key=openai_key,
+            )
+        else:
+            embedding_function = embedding_functions.OpenAIEmbeddingFunction(
+                model_name="text-embedding-3-small",
+                api_key=openai_key
+            )
+
+        collection = client.get_or_create_collection(
+            name=collection_name,
+            embedding_function=embedding_function
+        )
+
         return collection, True, None
     except Exception as e:
         return None, False, str(e)
