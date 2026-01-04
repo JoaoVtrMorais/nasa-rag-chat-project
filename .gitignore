@@ -11,3 +11,4 @@ wheels/
 .env
 
 chroma_embedding_text_only.log
+**/chroma_db_openai
