@@ -86,7 +86,7 @@ def evaluate_response_quality(
     }
 
     if reference and reference.strip():
-        sample_kwargs["reference_contexts"] = reference.strip()
+        sample_kwargs["reference"] = reference.strip()
         metrics.extend(
             [
                 RougeScore(), 
