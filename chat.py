@@ -91,7 +91,12 @@ def evaluate_response_quality(
 ) -> Dict[str, float]:
     """Evaluate response quality using RAGAS metrics"""
     try:
-        return ragas_evaluator.evaluate_response_quality(question, answer, contexts)
+        return ragas_evaluator.evaluate_response_quality(
+            question=question,
+            answer=answer,
+            contexts=contexts,
+            reference=question
+        )
     except Exception as e:
         return {"error": f"Evaluation failed: {str(e)}"}
 
