@@ -8,14 +8,11 @@ and feedback collection for continuous improvement.
 
 import streamlit as st
 import os
-import json
-import pandas as pd
 
 import ragas_evaluator
 import rag_client
 import llm_client
 
-from pathlib import Path
 from typing import Dict, List, Optional
 
 from dotenv import load_dotenv
@@ -109,13 +106,6 @@ def display_evaluation_metrics(scores: Dict[str, float]):
 
     for metric_name, score in scores.items():
         if isinstance(score, (int, float)):
-            # Color code based on score
-            if score >= 0.8:
-                color = "green"
-            elif score >= 0.6:
-                color = "orange"
-            else:
-                color = "red"
 
             st.sidebar.metric(
                 label=metric_name.replace("_", " ").title(),
