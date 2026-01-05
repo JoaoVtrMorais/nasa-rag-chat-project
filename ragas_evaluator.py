@@ -13,6 +13,7 @@ try:
         Faithfulness,
         ResponseRelevancy,
         # NonLLMContextPrecisionWithReference,
+        context_precision,
         BleuScore,
         RougeScore,
     )
@@ -92,6 +93,7 @@ def evaluate_response_quality(
                 RougeScore(), 
                 BleuScore(), 
                 # NonLLMContextPrecisionWithReference() # Requires 'reference_contexts' (list of ideal chunks), incompatible with ROUGE/BLEU which use 'reference' (ideal answer string).
+                context_precision,
             ]
         )
 
